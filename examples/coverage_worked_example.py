@@ -186,21 +186,25 @@ def _render_figures(cov: dict, naive: list, honest: list, out_dir: Path) -> None
     from matplotlib.lines import Line2D
     from matplotlib.patches import Polygon as MplPolygon
 
-    # simple sans typography + a maroon-aligned, colour-blind-legible palette
+    # simple sans typography + a cobalt-aligned palette. the three series stay
+    # mutually distinguishable under protanopia, deuteranopia and tritanopia,
+    # but they separate by saturation rather than by lightness: exact and
+    # place-tag sit within 3 L* of each other, so these figures are legible
+    # for colour-vision deficiency and are NOT greyscale-safe.
     plt.rcParams.update(
         {
             "font.family": "sans-serif",
             "font.sans-serif": ["Helvetica", "Arial", "DejaVu Sans"],
         }
     )
-    PAPER = "#faf8f3"
-    INK, SOFT, FAINT = "#20201e", "#565049", "#8a867a"
-    RULE = "#d8d2c6"
-    MAROON = "#7a1c2b"  # exact coordinates
-    STEEL = "#4f6d8f"  # place tag only
-    GRAY = "#cbc4b6"  # no location
-    LAND = "#efe9dd"
-    WATER = "#aec4d0"
+    PAPER = "#f8f9fb"
+    INK, SOFT, FAINT = "#101720", "#424c5a", "#656f7d"
+    RULE = "#e3e7ee"
+    C_EXACT = "#2b62e4"  # exact coordinates
+    C_PLACE = "#64748b"  # place tag only
+    C_NOGEO = "#d3d9e2"  # no location
+    LAND = "#eceff4"
+    WATER = "#c3d4e4"
 
     # ====================================================================
     # figure 1 : unit chart, one square per post
@@ -217,7 +221,7 @@ def _render_figures(cov: dict, naive: list, honest: list, out_dir: Path) -> None
     ax.set_facecolor(PAPER)
     ax.pcolormesh(
         cat,
-        cmap=ListedColormap([MAROON, STEEL, GRAY]),
+        cmap=ListedColormap([C_EXACT, C_PLACE, C_NOGEO]),
         edgecolors=PAPER,
         linewidth=1.0,
     )
@@ -246,9 +250,9 @@ def _render_figures(cov: dict, naive: list, honest: list, out_dir: Path) -> None
     )
 
     legend = [
-        (MAROON, "exact coordinates", n_exact, "1.6%"),
-        (STEEL, "place tag only", n_place, "14.4%"),
-        (GRAY, "no location at all", n_nogeo, "84.0%"),
+        (C_EXACT, "exact coordinates", n_exact, "1.6%"),
+        (C_PLACE, "place tag only", n_place, "14.4%"),
+        (C_NOGEO, "no location at all", n_nogeo, "84.0%"),
     ]
     for (color, name, n, pct), x in zip(legend, (0.055, 0.40, 0.71)):
         fig.patches.append(
@@ -276,8 +280,8 @@ def _render_figures(cov: dict, naive: list, honest: list, out_dir: Path) -> None
     fig.text(
         0.055,
         0.028,
-        "A naive map plots only the 80 maroon squares (1.6%). "
-        "Place-resolution recovers the 720 steel squares, reaching 16% mappable;",
+        "A naive map plots only the 80 blue squares (1.6%). "
+        "Place-resolution recovers the 720 slate squares, reaching 16% mappable;",
         color=FAINT,
         fontsize=9,
         ha="left",
@@ -457,7 +461,7 @@ def _render_figures(cov: dict, naive: list, honest: list, out_dir: Path) -> None
     )
 
     axL.scatter(
-        xs, ys, s=15, color=MAROON, alpha=0.9, edgecolor=PAPER, linewidth=0.4, zorder=5
+        xs, ys, s=15, color=C_EXACT, alpha=0.9, edgecolor=PAPER, linewidth=0.4, zorder=5
     )
     for (lon, lat), c in counts.items():
         axR.scatter(
@@ -465,13 +469,13 @@ def _render_figures(cov: dict, naive: list, honest: list, out_dir: Path) -> None
             lat,
             s=16 * np.sqrt(c),
             facecolor="none",
-            edgecolor=STEEL,
+            edgecolor=C_PLACE,
             linewidth=1.5,
             alpha=0.9,
             zorder=4,
         )
     axR.scatter(
-        xs, ys, s=15, color=MAROON, alpha=0.9, edgecolor=PAPER, linewidth=0.4, zorder=5
+        xs, ys, s=15, color=C_EXACT, alpha=0.9, edgecolor=PAPER, linewidth=0.4, zorder=5
     )
 
     for ax, tag, sub in (
@@ -508,7 +512,7 @@ def _render_figures(cov: dict, naive: list, honest: list, out_dir: Path) -> None
             [0],
             marker="o",
             linestyle="none",
-            markerfacecolor=MAROON,
+            markerfacecolor=C_EXACT,
             markeredgecolor=PAPER,
             markersize=7,
             label="exact coordinate (one post)",
@@ -519,7 +523,7 @@ def _render_figures(cov: dict, naive: list, honest: list, out_dir: Path) -> None
             marker="o",
             linestyle="none",
             markerfacecolor="none",
-            markeredgecolor=STEEL,
+            markeredgecolor=C_PLACE,
             markersize=11,
             markeredgewidth=1.5,
             label="place centroid (bigger ring = more posts)",
