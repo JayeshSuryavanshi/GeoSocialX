@@ -361,7 +361,10 @@ def _render_figures(cov: dict, naive: list, honest: list, out_dir: Path) -> None
         )
         for name in key:
             lon, lat = HOODS[name]
-            ax.plot(lon, lat, "o", ms=2.2, color=FAINT, alpha=0.6, zorder=1)
+            # a cross, not a dot: the place-centroid layer below draws rings in
+            # C_PLACE, which is within a few points of FAINT, so a round anchor
+            # here is indistinguishable from a small real centroid in panel (b)
+            ax.plot(lon, lat, "+", ms=4.4, mew=1.0, color=FAINT, alpha=0.75, zorder=1)
         for name, (dx, dy, ha, va) in key.items():
             lon, lat = HOODS[name]
             ax.text(
