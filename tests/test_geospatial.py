@@ -30,7 +30,7 @@ SF_TWEETS = [
     {"id": "4", "text": "no geo at all"},
 ]
 
-# Tweets whose coordinates are malformed or out of range — all must be dropped.
+# Tweets whose coordinates are malformed or out of range: all must be dropped.
 BAD_TWEETS = [
     {"id": "a", "geo": {"coordinates": {"coordinates": [-122.4, 37.7, 5.0]}}},  # 3 elts
     {"id": "b", "geo": {"coordinates": {"coordinates": [None, 37.7]}}},  # non-numeric

@@ -12,7 +12,7 @@ def valid_lonlat(lon: float, lat: float) -> bool:
 class GeoRecord:
     """A single record reduced to a geographic point (WGS84), from any source.
 
-    ``source`` records how the point was obtained — e.g. ``"exact"`` for a
+    ``source`` records how the point was obtained, e.g. ``"exact"`` for a
     precise coordinate, or ``"place"`` for one resolved from a place bounding
     box (a coarse approximation).
 

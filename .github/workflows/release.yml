@@ -1,7 +1,7 @@
 name: Release
 
 # Publishes to PyPI when a version tag (e.g. v0.3.0) is pushed, using PyPI
-# Trusted Publishing (OIDC) — no long-lived API token is stored anywhere.
+# Trusted Publishing (OIDC). No long-lived API token is stored anywhere.
 #
 # One-time setup: register this repo + workflow as a Trusted Publisher for the
 # `geosocialx` project at https://pypi.org/manage/project/geosocialx/settings/publishing/

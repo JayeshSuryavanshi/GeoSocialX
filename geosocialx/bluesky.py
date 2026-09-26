@@ -1,6 +1,6 @@
 """Read geotagged records from Bluesky / the AT Protocol into ``GeoRecord``s.
 
-Location on the AT Protocol is an emerging, community-driven feature — there is
+Location on the AT Protocol is an emerging, community-driven feature: there is
 no official geotag on a standard post yet. Instead, apps attach a
 ``community.lexicon.location.geo`` object (``latitude`` / ``longitude`` as
 strings, optional ``altitude`` / ``name``) to records: check-ins (Anchor),
@@ -8,7 +8,7 @@ events and venues (Smoke Signal), geo-marker records, and post embeds.
 
 ``read_bluesky`` extracts that lexicon from **any** AT Protocol record, however
 it is attached, so it works across those patterns. Geotagged records are still
-rare today — this is early, best-effort coverage of an open, free, growing
+rare today. This is early, best-effort coverage of an open, free, growing
 source (no paid tier, unlike the X API).
 
 Fetching needs the optional ``atproto`` SDK: ``pip install "geosocialx[bluesky]"``.
@@ -58,7 +58,7 @@ def _find_geo(obj: object) -> tuple[float, float, str | None] | None:
 
 
 def _content(record: Mapping) -> Mapping:
-    """The record's payload — ``record`` (a post view) or ``value`` (listRecords)."""
+    """The record's payload: ``record`` (a post view) or ``value`` (listRecords)."""
     for key in ("record", "value"):
         inner = record.get(key)
         if isinstance(inner, Mapping):
@@ -121,12 +121,12 @@ def _to_dict(obj: object) -> Mapping:
 
 
 class BlueskyFetcher:
-    """Fetch records from Bluesky / the AT Protocol — free, no paid tier.
+    """Fetch records from Bluesky / the AT Protocol (free, no paid tier).
 
     Needs the optional ``atproto`` SDK (``pip install "geosocialx[bluesky]"``).
     Pass a ready ``atproto`` client, or a **free** Bluesky ``handle`` +
     ``app_password`` to build one. Post :meth:`search_posts` needs a logged-in
-    client (a Bluesky account is free — there is no paid tier); reading a known
+    client (a Bluesky account is free: there is no paid tier); reading a known
     repo's records with :meth:`list_records` is public and needs no login. The
     returned records are plain dicts ready for :func:`read_bluesky`.
     """
@@ -154,7 +154,7 @@ class BlueskyFetcher:
     def search_posts(self, query: str, limit: int = 100) -> list[Mapping]:
         """Search recent posts and return them as dicts.
 
-        Needs a logged-in client — build the fetcher with a (free) ``handle`` +
+        Needs a logged-in client. Build the fetcher with a (free) ``handle`` +
         ``app_password``, as ``searchPosts`` is served with authentication.
         """
         resp = self.client.app.bsky.feed.search_posts({"q": query, "limit": limit})
@@ -163,7 +163,7 @@ class BlueskyFetcher:
     def list_records(
         self, repo: str, collection: str, limit: int = 100
     ) -> list[Mapping]:
-        """List a repo's records in a ``collection`` — public, no login needed.
+        """List a repo's records in a ``collection`` (public, no login needed).
 
         e.g. a check-in collection on a known repo (``did:...``).
         """

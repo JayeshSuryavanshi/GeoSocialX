@@ -129,7 +129,7 @@ class XDataFetcher:
         days); leave them ``None`` to use the full window. Pagination runs
         eagerly inside this call, so both API errors
         (:class:`tweepy.TweepyException`) and transport-level failures
-        (:class:`requests.exceptions.RequestException` — dropped connection, DNS
+        (:class:`requests.exceptions.RequestException`: dropped connection, DNS
         failure, timeout) are caught here and turned into a ``None`` return,
         rather than surfacing later when results are consumed.
 
@@ -175,7 +175,7 @@ class XDataFetcher:
     ) -> None:
         """Write each tweet dict to ``file_name`` as newline-delimited JSON.
 
-        Raises ``ValueError`` if ``tweets`` is ``None`` — otherwise the natural
+        Raises ``ValueError`` if ``tweets`` is ``None``; otherwise the natural
         ``save_tweets_to_file(fetch_tweets(...), path)`` call would truncate an
         existing file *before* discovering the fetch had failed, silently
         destroying data and then crashing.

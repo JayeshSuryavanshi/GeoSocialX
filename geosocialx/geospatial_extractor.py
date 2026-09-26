@@ -14,9 +14,9 @@ class GeospatialExtractor:
     A v2 tweet requested with ``tweet_fields=["geo", ...]`` may carry geo data
     in two forms:
 
-      * ``geo.coordinates.coordinates`` — an exact ``[longitude, latitude]``
+      * ``geo.coordinates.coordinates``: an exact ``[longitude, latitude]``
         point. Only a small share of tweets include this.
-      * ``geo.place_id`` — a reference to a place (city, POI, ...) with no
+      * ``geo.place_id``: a reference to a place (city, POI, ...) with no
         exact point. It can be resolved to an approximate point if the place's
         bounding box is known (see the ``places`` argument to
         :meth:`extract_points` and :meth:`XDataFetcher.save_places_to_file`).
@@ -127,7 +127,7 @@ class GeospatialExtractor:
         """Summarize how many tweets carried exact coordinates vs. only a place.
 
         Returns a dict with ``total``, ``with_point``, ``place_only`` and
-        ``no_geo`` counts — useful for gauging how sparse the geo data is.
+        ``no_geo`` counts, useful for gauging how sparse the geo data is.
         ``with_point`` counts only tweets that :meth:`extract_points` would keep
         as exact points, so the two summaries agree.
         """

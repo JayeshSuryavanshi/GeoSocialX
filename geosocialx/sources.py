@@ -2,7 +2,7 @@
 
 The analysis and visualization layers work on ``GeoRecord`` objects regardless of
 where they came from. These readers let you feed them a CSV, a GeoJSON
-``FeatureCollection``, or any iterable of dict-like rows — no X API involved.
+``FeatureCollection``, or any iterable of dict-like rows (no X API involved).
 Malformed or out-of-range coordinates are skipped rather than poisoning results.
 """
 
@@ -102,7 +102,7 @@ def read_csv(
 ) -> list[GeoRecord]:
     """Read a CSV with longitude/latitude columns into ``GeoRecord``s.
 
-    Column names default to ``longitude``/``latitude``/``id``/… — override any
+    Column names default to ``longitude``/``latitude``/``id``/…; override any
     that differ in your file (e.g. ``read_csv("x.csv", lon="lng", lat="lat")``).
     The default ``utf-8-sig`` encoding transparently strips a leading BOM (as
     written by Excel and many Windows tools) so the first column is read
@@ -178,7 +178,7 @@ def sample_names() -> tuple[str, ...]:
 
 
 def load_sample(name: str = "sf") -> list[GeoRecord]:
-    """Load a bundled synthetic sample dataset as ``GeoRecord``s — no API needed.
+    """Load a bundled synthetic sample dataset as ``GeoRecord``s, no API needed.
 
     Ships in the package, so ``pip install geosocialx`` gives you a working
     dataset for a one-line demo. See :func:`sample_names` for the options

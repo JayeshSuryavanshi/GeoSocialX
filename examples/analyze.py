@@ -1,6 +1,6 @@
 """Offline demo of the analyze/visualize half of the pipeline.
 
-Runs entirely on the committed sample dump — no X API access or paid tier
+Runs entirely on the committed sample dump: no X API access or paid tier
 needed. It loads newline-delimited tweets, reports geo coverage, resolves both
 exact-coordinate and place-only tweets to points, prints spatial statistics, and
 writes a GeoJSON FeatureCollection next to this script.
