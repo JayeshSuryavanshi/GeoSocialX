@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "GeoSocialX"
 version = "0.8.0"
-description = "Map the geography of geotagged social/location data — hotspots, time trends, GeoJSON & maps, dependency-free."
+description = "Map the geography of geotagged social/location data: hotspots, time trends, GeoJSON & maps."
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"

@@ -12,7 +12,7 @@ GeoSocialX maps the geography of geotagged social & location data. Point it at *
 
 GeoSocialX turns geotagged records into geospatial insight. The analysis, GeoJSON, and mapping layers all work on a common `GeoRecord`, which you can read from a **CSV**, a **GeoJSON** file, any iterable of dicts, or the **bundled sample datasets**, all with no API key. Fetching *new* geotagged records from **Bluesky** (free, via the AT Protocol) or the X API v2 (paid, via [Tweepy](https://www.tweepy.org/)) are optional sources among them.
 
-> **Project status:** Alpha (0.8.0). The read → analyze → visualize logic uses only the Python standard library; interactive maps use the optional `folium` extra and Bluesky the optional `bluesky` extra. *(The package currently still installs one small runtime dependency, [`tweepy`](https://www.tweepy.org/), used only by the paid **X** fetch path, moving it to an optional extra so `import geosocialx` is dependency-free is planned.)* Reading, analyzing, visualizing, and fetching from **Bluesky** are all free; only the *X* fetch path needs a paid API tier (Basic or higher).
+> **Project status:** Alpha (0.8.0). The read → analyze → visualize logic uses only the Python standard library; interactive maps use the optional `folium` extra and Bluesky the optional `bluesky` extra. *(The package currently still installs one small runtime dependency, [`tweepy`](https://www.tweepy.org/), used only by the paid **X** fetch path. Moving it to an optional extra, so that `import geosocialx` is dependency-free, is planned.)* Reading, analyzing, visualizing, and fetching from **Bluesky** are all free; only the *X* fetch path needs a paid API tier (Basic or higher).
 
 ## Features
 
